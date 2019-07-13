@@ -105,40 +105,46 @@ namespace CampplaceTest1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Details(string id, string email, string name, string unit, string function, string city)
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> Details(string id, string email, string firstname, string lastname, string unit, string function, string city)
         {
             ApplicationUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
+                //if (email!=user.Email)
+                //    user.Email = email;
+                //else
+                //    ModelState.AddModelError("email", "Email cannot be empty");
+                 
                 if (!string.IsNullOrEmpty(email))
                     user.Email = email;
                 else
-                    ModelState.AddModelError("", "Email cannot be empty");
+                    ModelState.AddModelError("email", "Email is required");
 
-                if (!string.IsNullOrEmpty(name))
-                    user.FirstName = name;
+                if (!string.IsNullOrEmpty(firstname))
+                    user.FirstName = firstname;
                 else
-                    ModelState.AddModelError("", "First Name cannot be empty");
+                    ModelState.AddModelError("firstname", "First Name is required");
 
-                if (!string.IsNullOrEmpty(name))
-                    user.LastName = name;
+                if (!string.IsNullOrEmpty(lastname))
+                    user.LastName = lastname;
                 else
-                    ModelState.AddModelError("", "Last Name cannot be empty");
+                    ModelState.AddModelError("lastname", "Last Name is required");
 
                 if (!string.IsNullOrEmpty(unit))
                     user.Unit = unit;
                 else
-                    ModelState.AddModelError("", "Unit cannot be empty");
+                    ModelState.AddModelError("unit", "Unit is required");
 
                 if (!string.IsNullOrEmpty(function))
                     user.Function = function;
                 else
-                    ModelState.AddModelError("", "Function cannot be empty");
+                    ModelState.AddModelError("function", "Function is required");
 
                 if (!string.IsNullOrEmpty(city))
                     user.City = city;
                 else
-                    ModelState.AddModelError("", "City cannot be empty");
+                    ModelState.AddModelError("city", "City is required");
 
                 if (!string.IsNullOrEmpty(email))
                 {
@@ -148,6 +154,7 @@ namespace CampplaceTest1.Controllers
                     else
                         Errors(result);
                 }
+                
             }
             else
                 ModelState.AddModelError("", "User Not Found");
@@ -172,12 +179,12 @@ namespace CampplaceTest1.Controllers
                 if (!string.IsNullOrEmpty(email))
                     user.Email = email;
                 else
-                    ModelState.AddModelError("", "Email cannot be empty");
+                    ModelState.AddModelError("", "Email is required");
 
                 if (!string.IsNullOrEmpty(password))
                     user.PasswordHash = passwordHasher.HashPassword(user, password);
                 else
-                    ModelState.AddModelError("", "Password cannot be empty");
+                    ModelState.AddModelError("", "Password is required");
 
                 if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password))
                 {
