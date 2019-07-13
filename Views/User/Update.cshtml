@@ -5,10 +5,10 @@
 <div asp-validation-summary="All" class="text-danger"></div>
 
 <form method="post">
-    <input type="hidden" name="UserName" value="@Model.User.Name" />
+    <input type="hidden" name="UserName" value="@Model.User.UserName" />
     <input type="hidden" name="UserId" value="@Model.User.Id" />
 
-    <h2>Add To @Model.User.Name</h2>
+    <h2>Add To @Model.User.UserName</h2>
     <table class="table table-bordered table-sm">
         @if (Model.UserNonRoles.Count() == 0)
         {
@@ -28,7 +28,7 @@
         }
     </table>
 
-    <h2>Remove From @Model.User.Name</h2>
+    <h2>Remove From @Model.User.UserName</h2>
     <table class="table table-bordered table-sm">
         @if (Model.UserRoles.Count() == 0)
         {

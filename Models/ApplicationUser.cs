@@ -9,7 +9,9 @@ namespace CampplaceTest1.Models
     public class ApplicationUser : IdentityUser
     {
         [PersonalData]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+        [PersonalData]
+        public string LastName { get; set; }
         [PersonalData]
         public string Unit { get; set; }
         [PersonalData]

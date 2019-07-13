@@ -42,13 +42,13 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Username")]
-            public string Username { get; set; }
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Name")]
-            public string Name { get; set; }
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
@@ -92,7 +92,7 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Username, Email = Input.Email, Name = Input.Name, City = Input.City, Unit = Input.Unit, Function = Input.Function };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, FirstName = Input.FirstName, LastName = Input.LastName, City = Input.City, Unit = Input.Unit, Function = Input.Function };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

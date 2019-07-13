@@ -47,8 +47,12 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account.Manage
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Full name")]
-            public string Name { get; set; }
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
@@ -90,8 +94,8 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                UserName = user.UserName,
-                Name = user.Name,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Unit = user.Unit,
                 Function = user.Function,
                 City = user.City,
@@ -133,9 +137,14 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account.Manage
                 user.UserName = Input.UserName;
             }
 
-            if (Input.Name != user.Name)
+            if (Input.FirstName != user.FirstName)
             {
-                user.Name = Input.Name;
+                user.FirstName = Input.FirstName;
+            }
+
+            if (Input.LastName != user.LastName)
+            {
+                user.LastName = Input.LastName;
             }
 
             if (Input.Unit != user.Unit)
