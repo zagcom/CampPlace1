@@ -68,10 +68,29 @@ namespace CampplaceTest1.Controllers
                 }
             }
 
+
+
             if (ModelState.IsValid)
                 return RedirectToAction(nameof(Index));
             else
                 return await Update(model.UserId);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            ApplicationUser user = await userManager.FindByIdAsync(id);
+            if (user != null)
+            {
+                IdentityResult result = await userManager.DeleteAsync(user);
+                if (result.Succeeded)
+                    return RedirectToAction("Index");
+                else
+                    Errors(result);
+            }
+            else
+                ModelState.AddModelError("", "No user found");
+            return View("Index", userManager.Users);
         }
 
         private void Errors(IdentityResult result)
