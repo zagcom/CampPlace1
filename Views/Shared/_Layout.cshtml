@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<IdentityRole> RoleManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -33,6 +36,19 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        if (User.IsInRole("MasterUser"))
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-area="" asp-controller="User" asp-action="Index">Users</a></li>
+                                    <li><a asp-area="" asp-controller="Role" asp-action="Index">Roles</a></li>
+                                </ul>
+                            </li>
+                        }
+                    }
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

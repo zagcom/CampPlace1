@@ -1,0 +1,51 @@
+﻿@model UserEdit
+
+<h1>Update Role</h1>
+<a asp-action="Index" class="btn btn-secondary">Back</a>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post">
+    <input type="hidden" name="UserName" value="@Model.User.Name" />
+    <input type="hidden" name="UserId" value="@Model.User.Id" />
+
+    <h2>Add To @Model.User.Name</h2>
+    <table class="table table-bordered table-sm">
+        @if (Model.UserNonRoles.Count() == 0)
+        {
+            <tr><td colspan="2">All Users Are Members</td></tr>
+        }
+        else
+        {
+            @foreach (IdentityRole role in Model.UserNonRoles)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td>
+                        <input type="checkbox" name="RoleAdds" value="@role.Name">
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+
+    <h2>Remove From @Model.User.Name</h2>
+    <table class="table table-bordered table-sm">
+        @if (Model.UserRoles.Count() == 0)
+        {
+            <tr><td colspan="2">No Users Are Members</td></tr>
+        }
+        else
+        {
+            @foreach (IdentityRole role in Model.UserRoles)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td>
+                        <input type="checkbox" name="RoleDels" value="@role.Name">
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
