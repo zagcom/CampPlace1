@@ -21,16 +21,19 @@ namespace CampplaceTest1.Controllers
         private readonly IFileProvider fileProvider;
         private readonly IHostingEnvironment hostingEnvironment;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        
 
-        public CampsController(ApplicationDbContext context, IFileProvider fileprovider, IHostingEnvironment env, SignInManager<ApplicationUser> signInManager)
+        public CampsController(ApplicationDbContext context, IFileProvider fileprovider, IHostingEnvironment env, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             fileProvider = fileprovider;
             hostingEnvironment = env;
             _signInManager = signInManager;
+            _userManager = userManager;
         }
 
-
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         // GET: Camps
         public async Task<IActionResult> Index()
         {
@@ -66,13 +69,15 @@ namespace CampplaceTest1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP,LastEdited,EditorId,OwnerId")] Camp camp, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP")] Camp camp, IFormFile file)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(camp);
                 await _context.SaveChangesAsync();
-
+                var user = await GetCurrentUserAsync();
+                var userId = user?.Id;
+                
                 if (file != null || file.Length != 0)
                 {
                     // Create a File Info 
@@ -95,7 +100,9 @@ namespace CampplaceTest1.Controllers
                     }
 
                     // This save the path to the record
+                    camp.LastEdited = DateTime.Now;
                     camp.ImagePath = pathToSave;
+                    camp.OwnerId = userId;
                     _context.Update(camp);
                     await _context.SaveChangesAsync();
 

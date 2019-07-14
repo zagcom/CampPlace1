@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,11 +37,14 @@ namespace CampplaceTest1.Models
         public DateTime LastEdited { get; set; }
         public string EditorId { get; set; }
         public string OwnerId { get; set; }
-    }
 
+
+        
+    }
     public enum Voivodeship
     {
         dolnośląskie,
+        [Display(Name = "kujawsko-pomorskie")]
         kujawskoPomorskie,
         lubelskie,
         lubuskie,
@@ -53,8 +57,10 @@ namespace CampplaceTest1.Models
         pomorskie,
         śląskie,
         świętokrzyskie,
+        [Display(Name = "warmińsko-mazurskie")]
         warmińskoMazurskie,
         wielkopolskie,
         zachodniopomorskie
     }
+
 }
