@@ -1,0 +1,189 @@
+﻿@model CampplaceTest1.Models.Camp
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Camp</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Voivodeship)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Voivodeship)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Community)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Community)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Coordinates)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Coordinates)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SummerCamp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SummerCamp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WinterCamp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WinterCamp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bivouac)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bivouac)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Scouts)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Scouts)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.WolfCubs)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.WolfCubs)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Buildings)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Buildings)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Toilet)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Toilet)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Kitchen)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Kitchen)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SleepingInside)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SleepingInside)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxPeopleCapacity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxPeopleCapacity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DistanceFromBuildings)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DistanceFromBuildings)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NearestHospital)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NearestHospital)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NearestFireDepartment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NearestFireDepartment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NearestPoliceStation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NearestPoliceStation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NearestMarket)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NearestMarket)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPoint)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContactPoint)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailToCP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmailToCP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneToCP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneToCP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastEdited)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EditorId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EditorId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OwnerId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OwnerId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

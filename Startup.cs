@@ -13,6 +13,8 @@ using CampplaceTest1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using CampplaceTest1.Models;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace CampplaceTest1
 {
@@ -47,6 +49,7 @@ namespace CampplaceTest1
                     .AddDefaultTokenProviders();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +86,7 @@ namespace CampplaceTest1
             //initializing custom roles   
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            string[] roleNames = { "MasterUser", "Member", "CanManageCamps", "CanManageComments" };
+            string[] roleNames = { "MasterUser", "Member", "CanViewAndCreateCamps", "CanManageCamps", "CanManageComments" };
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)

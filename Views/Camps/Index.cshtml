@@ -1,0 +1,197 @@
+﻿@model IEnumerable<CampplaceTest1.Models.Camp>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Voivodeship)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Community)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Coordinates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SummerCamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WinterCamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bivouac)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Scouts)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WolfCubs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Buildings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Toilet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kitchen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SleepingInside)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxPeopleCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DistanceFromBuildings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NearestHospital)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NearestFireDepartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NearestPoliceStation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NearestMarket)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPoint)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailToCP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneToCP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastEdited)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EditorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Voivodeship)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Community)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Coordinates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SummerCamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WinterCamp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bivouac)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Scouts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WolfCubs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Buildings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Toilet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kitchen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SleepingInside)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPeopleCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImagePath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistanceFromBuildings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NearestHospital)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NearestFireDepartment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NearestPoliceStation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NearestMarket)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPoint)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailToCP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneToCP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastEdited)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EditorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

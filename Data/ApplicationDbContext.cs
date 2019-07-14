@@ -13,5 +13,6 @@ namespace CampplaceTest1.Data
             : base(options)
         {
         }
+        public DbSet<CampplaceTest1.Models.Camp> Camp { get; set; }
     }
 }
