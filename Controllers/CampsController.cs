@@ -106,7 +106,7 @@ namespace CampplaceTest1.Controllers
                     }
 
                     // This save the path to the record
-                    camp.LastEdited = DateTime.Now;
+                    camp.TimeCreated = DateTime.Now;
                     camp.ImagePath = pathToSave;
                     camp.OwnerId = userId;
                     _context.Update(camp);

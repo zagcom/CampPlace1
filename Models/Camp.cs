@@ -20,6 +20,10 @@ namespace CampplaceTest1.Models
         public bool Bivouac { get; set; }
         public bool Scouts { get; set; }
         public bool WolfCubs { get; set; }
+        public bool Lake { get; set; }
+        public bool River { get; set; }
+        public bool Mountains { get; set; }
+        public bool AccessibleByCar { get; set; }
         public bool Buildings { get; set; }
         public bool Toilet { get; set; }
         public bool Kitchen { get; set; }
@@ -31,15 +35,15 @@ namespace CampplaceTest1.Models
         public string NearestFireDepartment { get; set; }
         public string NearestPoliceStation { get; set; }
         public string NearestMarket { get; set; }
+        public string Sanel { get; set; }
+        public string PoviatFireBrigade { get; set; }
         public string ContactPoint { get; set; }
         public string EmailToCP { get; set; }
         public string PhoneToCP { get; set; }
-        public DateTime LastEdited { get; set; }
+        public DateTime? LastEdited { get; set; }
         public string EditorId { get; set; }
-        public string OwnerId { get; set; }
-
-
-        
+        public DateTime TimeCreated { get; set; }
+        public string OwnerId { get; set; }        
     }
     public enum Voivodeship
     {
