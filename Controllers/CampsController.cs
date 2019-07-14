@@ -71,12 +71,13 @@ namespace CampplaceTest1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP")] Camp camp, IFormFile file)
         {
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
             if (ModelState.IsValid)
             {
                 _context.Add(camp);
                 await _context.SaveChangesAsync();
-                var user = await GetCurrentUserAsync();
-                var userId = user?.Id;
+                
                 
                 if (file != null || file.Length != 0)
                 {

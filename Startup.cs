@@ -69,7 +69,7 @@ namespace CampplaceTest1
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseStaticFiles();
             app.UseAuthentication();
 
             app.UseMvc(routes =>
