@@ -144,12 +144,14 @@ namespace CampplaceTest1.Controllers
         [Authorize(Roles = "MasterUser, CanManageCamps")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,ImagePath,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP,LastEdited,EditorId,OwnerId")] Camp camp)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,ImagePath,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP")] Camp camp, IFormFile file)
         {
             if (id != camp.Id)
             {
                 return NotFound();
             }
+            var user = await GetCurrentUserAsync();
+            var userId = user?.Id;
 
             if (ModelState.IsValid)
             {
@@ -169,6 +171,38 @@ namespace CampplaceTest1.Controllers
                         throw;
                     }
                 }
+
+                if (file != null || file.Length != 0)
+                {
+                    // Create a File Info 
+                    FileInfo fi = new FileInfo(file.FileName);
+
+                    // This code creates a unique file name to prevent duplications 
+                    // stored at the file location
+                    var newFilename = camp.Id + "_" + String.Format("{0:d}",
+                                      (DateTime.Now.Ticks / 10) % 100000000) + fi.Extension;
+                    var webPath = hostingEnvironment.WebRootPath;
+                    var path = Path.Combine("", webPath + @"\images\" + newFilename);
+
+                    // IMPORTANT: The pathToSave variable will be save on the column in the database
+                    var pathToSave = @"/images/" + newFilename;
+
+                    // This stream the physical file to the allocate wwwroot/ImageFiles folder
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+
+                    // This save the path to the record
+                    camp.LastEdited = DateTime.Now;
+                    camp.ImagePath = pathToSave;
+                    camp.EditorId = userId;
+                    _context.Update(camp);
+                    await _context.SaveChangesAsync();
+
+
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             return View(camp);
