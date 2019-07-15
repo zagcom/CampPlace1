@@ -4,11 +4,11 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2>Dodaj nowe miejsce obozowe:</h2>
 
-<h4>Camp</h4>
+
 <hr />
-<form asp-action="Create" enctype="multipart/form-data" method="post">
+<form asp-controller="Camps" asp-action="Create" enctype="multipart/form-data" method="post">
     <div class="row">
         <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -48,7 +48,7 @@
                     <div class="form-group">
                         <label asp-for="EmailToCP" class="control-label"></label>
                         <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">@</span>
+                            <span class="input-group-addon" id="basic-addon1">@@</span>
                             <input asp-for="EmailToCP" class="form-control" />                    
                         </div>
                         <span asp-validation-for="EmailToCP" class="text-danger"></span>
@@ -163,6 +163,13 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
+                                        <input asp-for="Shower" /> @Html.DisplayNameFor(model => model.Shower)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
                                         <input asp-for="Kitchen" /> @Html.DisplayNameFor(model => model.Kitchen)
                                     </label>
                                 </div>
@@ -181,19 +188,27 @@
         </div>
         <div class="col-md-4">
             <div class="panel panel-default">
-                <div class="panel-heading">Dodatkowe informacje</div>
+                <div class="panel-heading">Informacje dodatkowe</div>
                 <div class="panel-body">
                     <div class="form-group">
                         <label asp-for="ImagePath" class="control-label"></label>
-                            <input asp-for="ImagePath" class="form-control" type="file" name="file" accept="image/*" />
+                        <input type="file" name="file"/>
                         <span asp-validation-for="ImagePath" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
-                            <textarea asp-for="Description" class="form-control" rows="8"></textarea>
+                        <textarea asp-for="Description" class="form-control" rows="12"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label asp-for="DistanceFromBuildings" class="control-label"></label>
+                        <div class="input-group">
+                            <input asp-for="DistanceFromBuildings" class="form-control" />
+                            <span class="input-group-addon" id="basic-addon2">km</span>
+                        </div>
+                        <span asp-validation-for="DistanceFromBuildings" class="text-danger"></span>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -202,52 +217,112 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Dane Administracyjne</div>
                 <div class="panel-body">
-                    
-                    
-                    <div class="form-group">
-                <label asp-for="DistanceFromBuildings" class="control-label"></label>
-                <input asp-for="DistanceFromBuildings" class="form-control" />
-                <span asp-validation-for="DistanceFromBuildings" class="text-danger"></span>
-            </div>
-                    <div class="form-group">
-                        <label asp-for="Community" class="control-label"></label>
-                        <input asp-for="Community" class="form-control" />
-                        <span asp-validation-for="Community" class="text-danger"></span>
-                    </div>          
-                    
-            <div class="form-group">
-                <label asp-for="NearestHospital" class="control-label"></label>
-                <input asp-for="NearestHospital" class="form-control" />
-                <span asp-validation-for="NearestHospital" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NearestFireDepartment" class="control-label"></label>
-                <input asp-for="NearestFireDepartment" class="form-control" />
-                <span asp-validation-for="NearestFireDepartment" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NearestPoliceStation" class="control-label"></label>
-                <input asp-for="NearestPoliceStation" class="form-control" />
-                <span asp-validation-for="NearestPoliceStation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NearestMarket" class="control-label"></label>
-                <input asp-for="NearestMarket" class="form-control" />
-                <span asp-validation-for="NearestMarket" class="text-danger"></span>
-            </div>
-            
-            
-            
-            </div>
-            </div>
-        </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Urząd Gminy</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="Community" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="Community" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Sanepid</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="Sanel" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="Sanel" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Powiatowa Straż Pożarna</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="PoviatFireBrigade" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="PoviatFireBrigade" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Najbliższy Szpital</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="NearestHospital" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="NearestHospital" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Najbliższa Jednostka Straży Pożarnej</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="NearestFireDepartment" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="NearestFireDepartment" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Najbliższy Posterunek Policji</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="NearestPoliceStation" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="NearestPoliceStation" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Nadleśnictwo</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="Superintendence" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="Superintendence" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Najbliższa Parafia</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="NearestParish" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="NearestParish" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Najbliższy Sklep</div>
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <textarea asp-for="NearestMarket" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="NearestMarket" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
 
-        </div>
-</form>
-    <div>
-        <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input type="submit" value="Zapisz" class="btn btn-default" />
+                    </div>
+                    <div>
+                        <a asp-action="Index">Wróć do listy</a>
+                    </div>
+                </div>
+            </div>
+        </div> 
     </div>
+</form>
+    
 

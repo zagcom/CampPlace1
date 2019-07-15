@@ -21,16 +21,14 @@ namespace CampplaceTest1.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IFileProvider fileProvider;
         private readonly IHostingEnvironment hostingEnvironment;
-        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         
 
-        public CampsController(ApplicationDbContext context, IFileProvider fileprovider, IHostingEnvironment env, SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public CampsController(ApplicationDbContext context, IFileProvider fileprovider, IHostingEnvironment env, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             fileProvider = fileprovider;
             hostingEnvironment = env;
-            _signInManager = signInManager;
             _userManager = userManager;
         }
 
@@ -80,11 +78,13 @@ namespace CampplaceTest1.Controllers
             var userId = user?.Id;
             if (ModelState.IsValid)
             {
+                camp.TimeCreated = DateTime.Now;
+                camp.OwnerId = userId;
                 _context.Add(camp);
                 await _context.SaveChangesAsync();
                 
                 
-                if (file != null || file.Length != 0)
+                if (file != null)
                 {
                     // Create a File Info 
                     FileInfo fi = new FileInfo(file.FileName);
@@ -106,16 +106,15 @@ namespace CampplaceTest1.Controllers
                     }
 
                     // This save the path to the record
-                    camp.TimeCreated = DateTime.Now;
+
                     camp.ImagePath = pathToSave;
-                    camp.OwnerId = userId;
                     _context.Update(camp);
                     await _context.SaveChangesAsync();
 
-                    
+
                 }
-
-
+                
+               
                 return RedirectToAction(nameof(Index));
             }
             return View(camp);
