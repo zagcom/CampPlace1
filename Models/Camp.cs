@@ -35,6 +35,7 @@ namespace CampplaceTest1.Models
         public string NearestFireDepartment { get; set; }
         public string NearestPoliceStation { get; set; }
         public string NearestMarket { get; set; }
+        public string NearestParish { get; set; }
         public string Sanel { get; set; }
         public string PoviatFireBrigade { get; set; }
         public string ContactPoint { get; set; }
