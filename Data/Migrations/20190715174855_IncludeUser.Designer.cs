@@ -4,14 +4,16 @@ using CampplaceTest1.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CampplaceTest1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190715174855_IncludeUser")]
+    partial class IncludeUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,6 +92,8 @@ namespace CampplaceTest1.Data.Migrations
 
                     b.Property<string>("Address");
 
+                    b.Property<string>("ApplicationUserId");
+
                     b.Property<bool>("Bivouac");
 
                     b.Property<bool>("Buildings");
@@ -104,7 +108,7 @@ namespace CampplaceTest1.Data.Migrations
 
                     b.Property<string>("DistanceFromBuildings");
 
-                    b.Property<string>("EditorName");
+                    b.Property<string>("EditorId");
 
                     b.Property<string>("EmailToCP");
 
@@ -133,8 +137,6 @@ namespace CampplaceTest1.Data.Migrations
                     b.Property<string>("NearestPoliceStation");
 
                     b.Property<string>("OwnerId");
-
-                    b.Property<string>("OwnerName");
 
                     b.Property<string>("PhoneToCP");
 
@@ -165,6 +167,8 @@ namespace CampplaceTest1.Data.Migrations
                     b.Property<bool>("WolfCubs");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Camp");
                 });
@@ -277,6 +281,13 @@ namespace CampplaceTest1.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CampplaceTest1.Models.Camp", b =>
+                {
+                    b.HasOne("CampplaceTest1.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

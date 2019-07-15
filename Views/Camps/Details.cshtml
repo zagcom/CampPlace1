@@ -4,183 +4,219 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>@Html.DisplayFor(model => model.Name)</h1>
+            </div>
+        </div>
+        <div class="col-md-12">
+            
+                <h6>@Html.DisplayNameFor(model => model.OwnerName) : @Html.DisplayFor(model => model.OwnerName), @Html.DisplayFor(model => model.TimeCreated)</h6>
+                <h6>@Html.DisplayNameFor(model => model.EditorName) : @Html.DisplayFor(model => model.EditorName), @Html.DisplayFor(model => model.LastEdited)</h6>
+        </div>
+        <div class="col-md-8">
+            <img class="img-thumbnail" src="@Model.ImagePath" asp-append-version="true" alt="@Model.ImagePath" />
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.Voivodeship)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.Voivodeship)
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.Address)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.Address)
+                </div>
+            </div>
 
-<div>
-    <h4>Camp</h4>
+        </div>
+    </div>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Voivodeship)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Voivodeship)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Community)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Community)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Coordinates)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Coordinates)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SummerCamp)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SummerCamp)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.WinterCamp)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.WinterCamp)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Bivouac)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Bivouac)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Scouts)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Scouts)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.WolfCubs)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.WolfCubs)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Buildings)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Buildings)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Toilet)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Toilet)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Kitchen)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Kitchen)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SleepingInside)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SleepingInside)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxPeopleCapacity)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaxPeopleCapacity)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DistanceFromBuildings)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DistanceFromBuildings)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NearestHospital)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NearestHospital)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NearestFireDepartment)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NearestFireDepartment)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NearestPoliceStation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NearestPoliceStation)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NearestMarket)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NearestMarket)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactPoint)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ContactPoint)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailToCP)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EmailToCP)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneToCP)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PhoneToCP)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastEdited)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastEdited)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EditorId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EditorId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.OwnerId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.OwnerId)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.Description)</h3>
+                </div>
+                <div class="panel-body">
+                    @Html.DisplayFor(model => model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div>
+            <h4>Camp</h4>
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Community)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Community)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Coordinates)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Coordinates)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SummerCamp)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SummerCamp)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.WinterCamp)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.WinterCamp)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Bivouac)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Bivouac)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Scouts)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Scouts)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.WolfCubs)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.WolfCubs)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Buildings)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Buildings)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Toilet)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Toilet)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Kitchen)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Kitchen)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SleepingInside)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.SleepingInside)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.MaxPeopleCapacity)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.MaxPeopleCapacity)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ImagePath)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ImagePath)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.DistanceFromBuildings)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.DistanceFromBuildings)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NearestHospital)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NearestHospital)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NearestFireDepartment)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NearestFireDepartment)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NearestPoliceStation)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NearestPoliceStation)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.NearestMarket)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NearestMarket)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ContactPoint)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ContactPoint)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EmailToCP)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EmailToCP)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PhoneToCP)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PhoneToCP)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.LastEdited)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LastEdited)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EditorName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.EditorName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.OwnerName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.OwnerName)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+            <a asp-action="Index">Back to List</a>
+        </div>

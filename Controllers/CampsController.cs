@@ -49,8 +49,7 @@ namespace CampplaceTest1.Controllers
                 return NotFound();
             }
 
-            var camp = await _context.Camp
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var camp = await _context.Camp.FirstOrDefaultAsync(m => m.Id == id);
             if (camp == null)
             {
                 return NotFound();
@@ -72,13 +71,15 @@ namespace CampplaceTest1.Controllers
         [Authorize(Roles = "MasterUser, CanViewAndCreateCamps")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP")] Camp camp, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP,NearestParish")] Camp camp, IFormFile file)
         {
             var user = await GetCurrentUserAsync();
+            var userName = user?.FirstName + " " + user?.LastName;
             var userId = user?.Id;
             if (ModelState.IsValid)
             {
                 camp.TimeCreated = DateTime.Now;
+                camp.OwnerName = userName;
                 camp.OwnerId = userId;
                 _context.Add(camp);
                 await _context.SaveChangesAsync();
@@ -143,14 +144,16 @@ namespace CampplaceTest1.Controllers
         [Authorize(Roles = "MasterUser, CanManageCamps")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,ImagePath,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP")] Camp camp, IFormFile file)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Kitchen,SleepingInside,MaxPeopleCapacity,ImagePath,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,ContactPoint,EmailToCP,PhoneToCP,OwnerName,NearestParish,TimeCreated,ImagePath,OwnerId")] Camp camp, IFormFile file)
         {
             if (id != camp.Id)
             {
                 return NotFound();
             }
             var user = await GetCurrentUserAsync();
-            var userId = user?.Id;
+            var userName = user?.FirstName + " " + user?.LastName;
+            camp.LastEdited = DateTime.Now;
+            camp.EditorName = userName;
 
             if (ModelState.IsValid)
             {
@@ -171,7 +174,7 @@ namespace CampplaceTest1.Controllers
                     }
                 }
 
-                if (file != null || file.Length != 0)
+                if (file != null)
                 {
                     // Create a File Info 
                     FileInfo fi = new FileInfo(file.FileName);
@@ -193,9 +196,7 @@ namespace CampplaceTest1.Controllers
                     }
 
                     // This save the path to the record
-                    camp.LastEdited = DateTime.Now;
                     camp.ImagePath = pathToSave;
-                    camp.EditorId = userId;
                     _context.Update(camp);
                     await _context.SaveChangesAsync();
 

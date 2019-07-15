@@ -80,10 +80,13 @@ namespace CampplaceTest1.Models
         public string PhoneToCP { get; set; }
         [Display(Name = "Data ostatniej edycji")]
         public DateTime? LastEdited { get; set; }
-        public string EditorId { get; set; }
-        [Display(Name = "Utworzono")]
+        [Display(Name = "Edytowane przez")]
+        public string EditorName { get; set; }
+        [Display(Name = "Data Utworzenia")]
         public DateTime TimeCreated { get; set; }
-        public string OwnerId { get; set; }        
+        [Display(Name = "Utworzone przez")]
+        public string OwnerName { get; set; }
+        public string OwnerId { get; set; }
     }
     public enum Voivodeship
     {

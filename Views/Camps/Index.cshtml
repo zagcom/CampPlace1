@@ -16,6 +16,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Voivodeship)
             </th>
             <th>
@@ -46,8 +49,12 @@
                 <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
             </td>
             <td>
+                <img class="img-thumbnail" src="@item.ImagePath"
+                     asp-append-version="true" alt="@item.ImagePath" />
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Voivodeship)
-            </td>            
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.SummerCamp)
             </td>
@@ -63,10 +70,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.WolfCubs)
             </td>
-            
+
             <td>
                 @Html.DisplayFor(modelItem => item.MaxPeopleCapacity)
-            </td>           
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
