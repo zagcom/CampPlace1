@@ -71,6 +71,10 @@ namespace CampplaceTest1.Models
         public string Superintendence { get; set; }
         [Display(Name = "Powiatowa Straż Pożarna")]
         public string PoviatFireBrigade { get; set; }
+        [Display(Name = "Punkt Ewakuacyjny"]
+        public string EvacuationPlace { get; set; }
+        [Display(Name = "Odległość od punktu ewakuacji"]
+        public int EvacuationDistance { get; set; }
         [Display(Name = "Osoba Kontaktowa")]
         public string ContactPoint { get; set; }
         [Display(Name = "E-mail do osoby kontaktowej")]
