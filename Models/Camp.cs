@@ -51,10 +51,10 @@ namespace CampplaceTest1.Models
         public bool SleepingInside { get; set; }
         [Display(Name = "Maksymalna ilość osób")]
         public int MaxPeopleCapacity { get; set; }
-        [Display(Name = "Zdjęcie")]
+        [Display(Name = "Zdjęcie")]        
         public string ImagePath { get; set; }
         [Display(Name = "Odległość od najbliższych gospodarstw")]
-        public string DistanceFromBuildings { get; set; }
+        public int DistanceFromBuildings { get; set; }
         [Display(Name = "Najbliższy szpital")]
         public string NearestHospital { get; set; }
         [Display(Name = "Najbliższa Jednostka Straży Pożarnej")]
@@ -91,6 +91,8 @@ namespace CampplaceTest1.Models
         [Display(Name = "Utworzone przez")]
         public string OwnerName { get; set; }
         public string OwnerId { get; set; }
+        [Display(Name = "Zweryfikowane")]
+        public bool Verified { get; set; }
     }
     public enum Voivodeship
     {

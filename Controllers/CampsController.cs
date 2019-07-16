@@ -34,14 +34,15 @@ namespace CampplaceTest1.Controllers
 
         private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         // GET: Camps
-        [Authorize(Roles = "MasterUser, Member")]
+        [Authorize(Roles = "MasterUser,Member")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Camp.ToListAsync());
         }
 
         // GET: Camps/Details/5
-        [Authorize(Roles = "MasterUser, CanViewAndCreateCamps")]
+        
+        [Authorize(Roles = "MasterUser,CanViewAndCreateCamps")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -59,7 +60,7 @@ namespace CampplaceTest1.Controllers
         }
 
         // GET: Camps/Create
-        [Authorize(Roles = "MasterUser, CanViewAndCreateCamps")]
+        [Authorize(Roles = "MasterUser,CanViewAndCreateCamps")]
         public IActionResult Create()
         {
             return View();
@@ -68,10 +69,10 @@ namespace CampplaceTest1.Controllers
         // POST: Camps/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "MasterUser, CanViewAndCreateCamps")]
+        [Authorize(Roles = "MasterUser,CanViewAndCreateCamps")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP")] Camp camp, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP,AccessibleByCar")] Camp camp, IFormFile file)
         {
             var user = await GetCurrentUserAsync();
             var userName = user?.FirstName + " " + user?.LastName;
@@ -81,6 +82,7 @@ namespace CampplaceTest1.Controllers
                 camp.TimeCreated = DateTime.Now;
                 camp.OwnerName = userName;
                 camp.OwnerId = userId;
+                camp.ImagePath = @"/images/placeholder-image.jpg";
                 _context.Add(camp);
                 await _context.SaveChangesAsync();
                 
@@ -122,7 +124,7 @@ namespace CampplaceTest1.Controllers
         }
         
         // GET: Camps/Edit/5
-        [Authorize(Roles = "MasterUser, CanManageCamps")]
+        [Authorize(Roles = "MasterUser,CanManageCamps")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -141,10 +143,10 @@ namespace CampplaceTest1.Controllers
         // POST: Camps/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "MasterUser, CanManageCamps")]
+        [Authorize(Roles = "MasterUser,CanManageCamps")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP,OwnerName,TimeCreated,ImagePath,OwnerId")] Camp camp, IFormFile file)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP,OwnerName,TimeCreated,ImagePath,OwnerId,AccessibleByCar")] Camp camp, IFormFile file)
         {
             if (id != camp.Id)
             {
@@ -209,7 +211,7 @@ namespace CampplaceTest1.Controllers
         }
 
         // GET: Camps/Delete/5
-        [Authorize(Roles = "MasterUser, CanManageCamps")]
+        [Authorize(Roles = "MasterUser,CanManageCamps")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -228,7 +230,7 @@ namespace CampplaceTest1.Controllers
         }
 
         // POST: Camps/Delete/5
-        [Authorize(Roles = "MasterUser, CanManageCamps")]
+        [Authorize(Roles = "MasterUser,CanManageCamps")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

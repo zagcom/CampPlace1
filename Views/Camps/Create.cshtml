@@ -13,7 +13,7 @@
         <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="panel panel-default">
-                <div class="panel-heading">Informacje ogólne</div>
+                <div class="panel-heading"><h3 class="panel-title">Informacje ogólne</h3></div>
                 <div class="panel-body">
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
@@ -61,179 +61,207 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading">Informacje dodatkowe</div>
+                <div class="panel-heading"><h3 class="panel-title">Informacje dodatkowe</h3></div>
                 <div class="panel-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Typ wyjazdu</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="SummerCamp" /> @Html.DisplayNameFor(model => model.SummerCamp)
-                                    </label>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Typ wyjazdu</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="SummerCamp" /> @Html.DisplayNameFor(model => model.SummerCamp)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="WinterCamp" /> @Html.DisplayNameFor(model => model.WinterCamp)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Bivouac" /> @Html.DisplayNameFor(model => model.Bivouac)
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="WinterCamp" /> @Html.DisplayNameFor(model => model.WinterCamp)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Bivouac" /> @Html.DisplayNameFor(model => model.Bivouac)
-                                    </label>
-                                </div>
-                            </div>                            
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Dla gałęzi</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Scouts" /> @Html.DisplayNameFor(model => model.Scouts)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="WolfCubs" /> @Html.DisplayNameFor(model => model.WolfCubs)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Okolica</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Lake" /> @Html.DisplayNameFor(model => model.Lake)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="River" /> @Html.DisplayNameFor(model => model.River)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Mountains" /> @Html.DisplayNameFor(model => model.Mountains)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Dostępność</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="AccessibleByCar" /> @Html.DisplayNameFor(model => model.AccessibleByCar)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Buildings" /> @Html.DisplayNameFor(model => model.Buildings)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Toilet" /> @Html.DisplayNameFor(model => model.Toilet)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Shower" /> @Html.DisplayNameFor(model => model.Shower)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="Kitchen" /> @Html.DisplayNameFor(model => model.Kitchen)
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input asp-for="SleepingInside" /> @Html.DisplayNameFor(model => model.SleepingInside)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Dla gałęzi</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Scouts" /> @Html.DisplayNameFor(model => model.Scouts)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="WolfCubs" /> @Html.DisplayNameFor(model => model.WolfCubs)
-                                    </label>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Zdjęcie</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <input type="file" name="file" />
+                                    <span asp-validation-for="ImagePath" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Opis</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <textarea asp-for="Description" class="form-control" rows="12"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Odległość od najbliższych gospodarstw</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input asp-for="DistanceFromBuildings" class="form-control" />
+                                        <span class="input-group-addon" id="basic-addon2">km</span>
+                                    </div>
+                                    <span asp-validation-for="DistanceFromBuildings" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Miejsce Ewakuacji</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <textarea asp-for="EvacuationPlace" class="form-control" rows="5"></textarea>
+                                    <span asp-validation-for="EvacuationPlace" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Odległość od miejsca ewakuacji</div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input asp-for="EvacuationDistance" class="form-control" />
+                                        <span class="input-group-addon" id="basic-addon2">km</span>
+                                    </div>
+                                    <span asp-validation-for="EvacuationDistance" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+
+
+
+
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Okolica</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Lake" /> @Html.DisplayNameFor(model => model.Lake)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="River" /> @Html.DisplayNameFor(model => model.River)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Mountains" /> @Html.DisplayNameFor(model => model.Mountains)
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Dostępność</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="AccessibleByCar" /> @Html.DisplayNameFor(model => model.AccessibleByCar)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Buildings" /> @Html.DisplayNameFor(model => model.Buildings)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Toilet" /> @Html.DisplayNameFor(model => model.Toilet)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Shower" /> @Html.DisplayNameFor(model => model.Shower)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="Kitchen" /> @Html.DisplayNameFor(model => model.Kitchen)
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input asp-for="SleepingInside" /> @Html.DisplayNameFor(model => model.SleepingInside)
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
                 </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">Informacje dodatkowe</div>
+            
+            @*<div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Informacje dodatkowe</h3></div>
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label asp-for="ImagePath" class="control-label"></label>
-                        <input type="file" name="file" />
-                        <span asp-validation-for="ImagePath" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Description" class="control-label"></label>
-                        <textarea asp-for="Description" class="form-control" rows="12"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DistanceFromBuildings" class="control-label"></label>
-                        <div class="input-group">
-                            <input asp-for="DistanceFromBuildings" class="form-control" />
-                            <span class="input-group-addon" id="basic-addon2">km</span>
-                        </div>
-                        <span asp-validation-for="DistanceFromBuildings" class="text-danger"></span>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Miejsce Ewakuacji</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <textarea asp-for="EvacuationPlace" class="form-control" rows="5"></textarea>
-                                <span asp-validation-for="EvacuationPlace" class="text-danger"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="EvacuationDistance" class="control-label"></label>
-                        <div class="input-group">
-                            <input asp-for="EvacuationDistance" class="form-control" />
-                            <span class="input-group-addon" id="basic-addon2">km</span>
-                        </div>
-                        <span asp-validation-for="EvacuationDistance" class="text-danger"></span>
-                    </div>
+                    
                 </div>
                 
-            </div>
+            </div>*@
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Dane Administracyjne</div>
+                <div class="panel-heading"><h3 class="panel-title">Dane Administracyjne</h3></div>
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-4">

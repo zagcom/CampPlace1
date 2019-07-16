@@ -41,7 +41,11 @@
                 </div>
                 <div class="panel-body">
                     <div class="embed-responsive embed-responsive-4by3">
-                        <iframe class="embed-responsive-item" src="..."></iframe>
+                        <iframe width="600"
+                                height="450"
+                                frameborder="0" style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDfNBnIs0qLDF4ff_yPE-4N6GKiZotlOYY&q=@Model.Coordinates" allowfullscreen></iframe>
+                        @*<iframe class="embed-responsive-item" src="..."></iframe>*@
                     </div>
                 </div>
             </div>
@@ -109,6 +113,7 @@
                                 <tr><td>@Html.DisplayFor(model => model.Kitchen)</td><td>@Html.DisplayNameFor(model => model.Kitchen)</td></tr>
                                 <tr><td>@Html.DisplayFor(model => model.SleepingInside)</td><td>@Html.DisplayNameFor(model => model.SleepingInside)</td></tr>
                                 <tr><td>@Html.DisplayFor(model => model.AccessibleByCar)</td><td>@Html.DisplayNameFor(model => model.AccessibleByCar)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.DistanceFromBuildings)</td><td>@Html.DisplayNameFor(model => model.DistanceFromBuildings)</td></tr>
                             </table>
                         </div>
                     </div>
