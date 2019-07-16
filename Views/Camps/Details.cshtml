@@ -1,4 +1,4 @@
-﻿@model CampplaceTest1.Models.Camp
+@model CampplaceTest1.Models.Camp
 
 @{
     ViewData["Title"] = "Details";
@@ -35,7 +35,16 @@
                     @Html.DisplayFor(model => model.Address)
                 </div>
             </div>
-
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Mapa</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <iframe class="embed-responsive-item" src="..."></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <hr />
@@ -50,6 +59,124 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Html.DisplayNameFor(model => model.ContactPoint)</div>
+                <div class="panel-body">
+                    <p>@Html.DisplayFor(model => model.ContactPoint)</p>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">@Html.DisplayFor(model => model.EmailToCP)</li>
+                    <li class="list-group-item">@Html.DisplayFor(model => model.PhoneToCP)</li>
+                </ul>
+            </div>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Informacje Dodatkowe</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Typ wyjazdu</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.SummerCamp)@Html.DisplayNameFor(model => model.SummerCamp)</p>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.WinterCamp)@Html.DisplayNameFor(model => model.WinterCamp)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.Bivouac)@Html.DisplayNameFor(model => model.Bivouac)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.MaxPeopleCapacity)@Html.DisplayNameFor(model => model.MaxPeopleCapacity)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.DistanceFromBuildings)@Html.DisplayNameFor(model => model.DistanceFromBuildings)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Miejsce dla</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.Scouts)@Html.DisplayNameFor(model => model.Scouts)</p>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.WolfCubs)@Html.DisplayNameFor(model => model.WolfCubs)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Dostępne opcje</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.Buildings)@Html.DisplayNameFor(model => model.Buildings)</p>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.Toilet)@Html.DisplayNameFor(model => model.Toilet)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.Shower)@Html.DisplayNameFor(model => model.Shower)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.Kitchen)@Html.DisplayNameFor(model => model.Kitchen)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.SleepingInside)@Html.DisplayNameFor(model => model.SleepingInside)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Informacje Administracyjne</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">@Html.DisplayNameFor(model => model.Community)</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.Community)</p>
+                            </div>                            
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">@Html.DisplayNameFor(model => model.Community)</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.Community)</p>
+                            </div>                            
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">@Html.DisplayNameFor(model => model.Community)</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.Community)</p>
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Miejsce dla</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.Scouts)@Html.DisplayNameFor(model => model.Scouts)</p>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.WolfCubs)@Html.DisplayNameFor(model => model.WolfCubs)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Dostępne opcje</div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(model => model.Buildings)@Html.DisplayNameFor(model => model.Buildings)</p>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">@Html.DisplayFor(model => model.Toilet)@Html.DisplayNameFor(model => model.Toilet)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.Shower)@Html.DisplayNameFor(model => model.Shower)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.Kitchen)@Html.DisplayNameFor(model => model.Kitchen)</li>
+                                <li class="list-group-item">@Html.DisplayFor(model => model.SleepingInside)@Html.DisplayNameFor(model => model.SleepingInside)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
         <div>
@@ -57,102 +184,20 @@
             <hr />
             <dl class="dl-horizontal">
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Community)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Community)
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Description)
-                </dd>
+               
+                
                 <dt>
                     @Html.DisplayNameFor(model => model.Coordinates)
                 </dt>
                 <dd>
                     @Html.DisplayFor(model => model.Coordinates)
                 </dd>
+ 
                 <dt>
-                    @Html.DisplayNameFor(model => model.Address)
+                    
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => model.Address)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.SummerCamp)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.SummerCamp)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.WinterCamp)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.WinterCamp)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Bivouac)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Bivouac)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Scouts)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Scouts)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.WolfCubs)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.WolfCubs)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Buildings)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Buildings)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Toilet)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Toilet)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.Kitchen)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Kitchen)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.SleepingInside)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.SleepingInside)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.MaxPeopleCapacity)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.MaxPeopleCapacity)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ImagePath)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.ImagePath)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.DistanceFromBuildings)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.DistanceFromBuildings)
+                    
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.NearestHospital)
@@ -178,42 +223,8 @@
                 <dd>
                     @Html.DisplayFor(model => model.NearestMarket)
                 </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.ContactPoint)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.ContactPoint)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.EmailToCP)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.EmailToCP)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.PhoneToCP)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.PhoneToCP)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.LastEdited)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.LastEdited)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.EditorName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.EditorName)
-                </dd>
-                <dt>
-                    @Html.DisplayNameFor(model => model.OwnerName)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.OwnerName)
-                </dd>
+          
+
             </dl>
         </div>
         <div>
