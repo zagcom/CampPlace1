@@ -81,43 +81,35 @@
                 <div class="panel-body">
                     <div class="col-md-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Typ wyjazdu</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.SummerCamp)@Html.DisplayNameFor(model => model.SummerCamp)</p>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item">@Html.DisplayFor(model => model.WinterCamp)@Html.DisplayNameFor(model => model.WinterCamp)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.Bivouac)@Html.DisplayNameFor(model => model.Bivouac)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.AccessibleByCar)@Html.DisplayNameFor(model => model.AccessibleByCar)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.MaxPeopleCapacity)@Html.DisplayNameFor(model => model.MaxPeopleCapacity)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.DistanceFromBuildings)@Html.DisplayNameFor(model => model.DistanceFromBuildings)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.EvacuationDistance)@Html.DisplayNameFor(model => model.EvacuationDistance)</li>
-                            </ul>
+                            <div class="panel-heading">Typ wyjazdu</div>                            
+                            <table class="table">
+                                <tr><td>@Html.DisplayFor(model => model.SummerCamp)</td><td>@Html.DisplayNameFor(model => model.SummerCamp)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.WinterCamp)</td><td>@Html.DisplayNameFor(model => model.WinterCamp)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.Bivouac)</td><td>@Html.DisplayNameFor(model => model.Bivouac)</td></tr>                                  
+                            </table>                         
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Miejsce dla</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.Scouts)@Html.DisplayNameFor(model => model.Scouts)</p>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item">@Html.DisplayFor(model => model.WolfCubs)@Html.DisplayNameFor(model => model.WolfCubs)</li>
-                            </ul>
+                            <div class="panel-heading">Odpowiednie dla</div>
+                            <table class="table">
+                                <tr><td>@Html.DisplayFor(model => model.Scouts)</td><td>@Html.DisplayNameFor(model => model.Scouts)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.WolfCubs)</td><td>@Html.DisplayNameFor(model => model.WolfCubs)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.MaxPeopleCapacity)</td><td>@Html.DisplayNameFor(model => model.MaxPeopleCapacity)</td></tr>
+                            </table>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">Dostępne opcje</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.Buildings)@Html.DisplayNameFor(model => model.Buildings)</p>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item">@Html.DisplayFor(model => model.Toilet)@Html.DisplayNameFor(model => model.Toilet)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.Shower)@Html.DisplayNameFor(model => model.Shower)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.Kitchen)@Html.DisplayNameFor(model => model.Kitchen)</li>
-                                <li class="list-group-item">@Html.DisplayFor(model => model.SleepingInside)@Html.DisplayNameFor(model => model.SleepingInside)</li>
-                            </ul>
+                            <table class="table">
+                                <tr><td>@Html.DisplayFor(model => model.Buildings)</td><td>@Html.DisplayNameFor(model => model.Buildings)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.Toilet)</td><td>@Html.DisplayNameFor(model => model.Toilet)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.Shower)</td><td>@Html.DisplayNameFor(model => model.Shower)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.Kitchen)</td><td>@Html.DisplayNameFor(model => model.Kitchen)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.SleepingInside)</td><td>@Html.DisplayNameFor(model => model.SleepingInside)</td></tr>
+                                <tr><td>@Html.DisplayFor(model => model.AccessibleByCar)</td><td>@Html.DisplayNameFor(model => model.AccessibleByCar)</td></tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -154,7 +146,10 @@
                             <div class="panel-heading">@Html.DisplayNameFor(model => model.EvacuationPlace)</div>
                             <div class="panel-body">
                                 <p>@Html.DisplayFor(model => model.EvacuationPlace)</p>
-                            </div>                            
+                            </div>
+                            <table class="table">
+                                <tr><td>@Html.DisplayFor(model => model.EvacuationDistance) km</td><td>@Html.DisplayNameFor(model => model.EvacuationDistance)</td></tr>                                
+                            </table>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -201,26 +196,9 @@
             </div>
         </div>
     </div>
-
-        <div>
-            <h4>Camp</h4>
-            <hr />
-            <dl class="dl-horizontal">
-
-               
-                
-                <dt>
-                    @Html.DisplayNameFor(model => model.Coordinates)
-                </dt>
-                <dd>
-                    @Html.DisplayFor(model => model.Coordinates)
-                </dd>
- 
-          
-
-            </dl>
-        </div>
-        <div>
-            <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-            <a asp-action="Index">Back to List</a>
-        </div>
+    <div class="well well-lg"><div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+    </div></div>
+        
+        
