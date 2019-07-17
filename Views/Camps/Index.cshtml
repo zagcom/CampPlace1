@@ -1,85 +1,133 @@
 ﻿@model IEnumerable<CampplaceTest1.Models.Camp>
-
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
+<div class="well well-lg">
+    <h2>Lista miejsc obozowych</h2>
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+</div>
+@if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanViewAndCreateCamps") || User.IsInRole("MasterUser")))
+{
+    <a class="btn btn-default" asp-action="Create">Dodaj nowe miejsce obozowe</a>
+}
+<table class="table table-hover text-center">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
+            <th class="text-center">
 
             </th>
-            <th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Voivodeship)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.SummerCamp)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.WinterCamp)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Bivouac)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Scouts)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.WolfCubs)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.MaxPeopleCapacity)
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
-            </td>
-            <td>
-                <img class="img-thumbnail" src="@item.ImagePath"
-                     asp-append-version="true" alt="@item.ImagePath" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Voivodeship)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SummerCamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WinterCamp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bivouac)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Scouts)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WolfCubs)
-            </td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.Verified == true)
+                    {
+                        <span class="label label-success">Zweryfikowany!</span>
+                    }
+                    else
+                    {
+                        <span class="label label-danger">Niezweryfikowany!</span>
+                    }
+                    @if ((DateTime.Now - item.TimeCreated).Days < 7)
+                    {
+                        <span class="label label-info">Nowy!</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxPeopleCapacity)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    @Html.DisplayFor(modelItem => item.Voivodeship)
+                </td>
+                <td>
+                    @if (item.SummerCamp == true)
+                    {
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    }
+                </td>
+                <td>
+                    @if (item.WinterCamp == true)
+                    {
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    }
+                </td>
+                <td>
+                    @if (item.Bivouac == true)
+                    {
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    }
+                </td>
+                <td>
+                    @if (item.Scouts == true)
+                    {
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    }
+                </td>
+                <td>
+                    @if (item.WolfCubs == true)
+                    {
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    }
+                    else
+                    {
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    }
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxPeopleCapacity)
+                </td>
+
+            </tr>
+        }
     </tbody>
 </table>

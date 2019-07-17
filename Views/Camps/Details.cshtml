@@ -1,209 +1,412 @@
 @model CampplaceTest1.Models.Camp
-
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Details";
 }
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>@Html.DisplayFor(model => model.Name)</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1>@Html.DisplayFor(model => model.Name)</h1>
+        </div>
+    </div>
+    <div class="col-md-12">
+
+        <h6>@Html.DisplayNameFor(model => model.OwnerName) : @Html.DisplayFor(model => model.OwnerName), @Html.DisplayFor(model => model.TimeCreated)</h6>
+        <h6>@Html.DisplayNameFor(model => model.EditorName) : @Html.DisplayFor(model => model.EditorName), @Html.DisplayFor(model => model.LastEdited)</h6>
+    </div>
+    <div class="col-md-8">
+        <img class="img-thumbnail" src="@Model.ImagePath" asp-append-version="true" alt="@Model.ImagePath" />
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Html.DisplayNameFor(model => model.Voivodeship)</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.Voivodeship)
             </div>
         </div>
-        <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Html.DisplayNameFor(model => model.Address)</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.Address)
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Mapa</h3>
+            </div>
+            <div class="panel-body">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe width="600"
+                            height="450"
+                            frameborder="0" style="border:0"
+                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDfNBnIs0qLDF4ff_yPE-4N6GKiZotlOYY&q=@Model.Coordinates" allowfullscreen></iframe>
+                    @*<iframe class="embed-responsive-item" src="..."></iframe>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@Html.DisplayNameFor(model => model.Description)</h3>
+            </div>
+            <div class="panel-body">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">@Html.DisplayNameFor(model => model.ContactPoint)</div>
+            <div class="panel-body">
+                <p>@Html.DisplayFor(model => model.ContactPoint)</p>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">@Html.DisplayFor(model => model.EmailToCP)</li>
+                <li class="list-group-item">@Html.DisplayFor(model => model.PhoneToCP)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informacje Dodatkowe</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Typ wyjazdu</div>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    @if (Model.SummerCamp == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.SummerCamp)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.WinterCamp == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.WinterCamp)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.Bivouac == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Bivouac)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Okolica</div>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    @if (Model.Lake == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Lake)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.River == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.River)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.Mountains == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Mountains)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Odpowiednie dla</div>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    @if (Model.Scouts == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Scouts)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.WolfCubs == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.WolfCubs)</td>
+                            </tr>
+                            <tr><td>@Html.DisplayFor(model => model.MaxPeopleCapacity)</td><td>@Html.DisplayNameFor(model => model.MaxPeopleCapacity)</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Dostępne opcje</div>
+                        <table class="table">
+                            <tr>
+                                <td>
+                                    @if (Model.Buildings == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Buildings)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.Toilet == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Toilet)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.Shower == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Shower)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.Kitchen == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.Kitchen)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.SleepingInside == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.SleepingInside)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @if (Model.AccessibleByCar == true)
+                                    {
+                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayNameFor(model => model.AccessibleByCar)</td>
+                            </tr>
+                            <tr><td>@Html.DisplayFor(model => model.DistanceFromBuildings)</td><td>@Html.DisplayNameFor(model => model.DistanceFromBuildings)</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Informacje Administracyjne</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.Community)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.Community)</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.Sanel)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.Sanel)</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.PoviatFireBrigade)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.PoviatFireBrigade)</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.EvacuationPlace)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.EvacuationPlace)</p>
+                        </div>
+                        <table class="table">
+                            <tr><td>@Html.DisplayFor(model => model.EvacuationDistance) km</td><td>@Html.DisplayNameFor(model => model.EvacuationDistance)</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestHospital)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.NearestHospital)</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestFireDepartment)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.NearestFireDepartment)</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestPoliceStation)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.NearestPoliceStation)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.Superintendence)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.Superintendence)</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestParish)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.NearestParish)</p>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestMarket)</div>
+                        <div class="panel-body">
+                            <p>@Html.DisplayFor(model => model.NearestMarket)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="well well-lg">
+
+    <div>
+        <a asp-action="Index" class="btn btn-default">Wróć do listy</a>
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanEditCamps") || User.IsInRole("MasterUser")))
+        {
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-info">Edytuj</a>
+        }
+
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanDeleteCamps") || User.IsInRole("MasterUser")))
+        {
+            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Usuń</a>
+        }
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanVerifyCamps") || User.IsInRole("MasterUser")) && Model.Verified == false)
+        {
+    <div>
+        <br />
+        <form asp-action="Verify">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Zweryfikuj" class="btn btn-warning" />
+
+        </form>
+    </div>
             
-                <h6>@Html.DisplayNameFor(model => model.OwnerName) : @Html.DisplayFor(model => model.OwnerName), @Html.DisplayFor(model => model.TimeCreated)</h6>
-                <h6>@Html.DisplayNameFor(model => model.EditorName) : @Html.DisplayFor(model => model.EditorName), @Html.DisplayFor(model => model.LastEdited)</h6>
-        </div>
-        <div class="col-md-8">
-            <img class="img-thumbnail" src="@Model.ImagePath" asp-append-version="true" alt="@Model.ImagePath" />
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.Voivodeship)</h3>
-                </div>
-                <div class="panel-body">
-                    @Html.DisplayFor(model => model.Voivodeship)
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.Address)</h3>
-                </div>
-                <div class="panel-body">
-                    @Html.DisplayFor(model => model.Address)
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Mapa</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="embed-responsive embed-responsive-4by3">
-                        <iframe width="600"
-                                height="450"
-                                frameborder="0" style="border:0"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDfNBnIs0qLDF4ff_yPE-4N6GKiZotlOYY&q=@Model.Coordinates" allowfullscreen></iframe>
-                        @*<iframe class="embed-responsive-item" src="..."></iframe>*@
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
+
+
     </div>
-    <hr />
-    <div class="row">
-        <div class="col-md-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@Html.DisplayNameFor(model => model.Description)</h3>
-                </div>
-                <div class="panel-body">
-                    @Html.DisplayFor(model => model.Description)
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">@Html.DisplayNameFor(model => model.ContactPoint)</div>
-                <div class="panel-body">
-                    <p>@Html.DisplayFor(model => model.ContactPoint)</p>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item">@Html.DisplayFor(model => model.EmailToCP)</li>
-                    <li class="list-group-item">@Html.DisplayFor(model => model.PhoneToCP)</li>
-                </ul>
-            </div>            
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Informacje Dodatkowe</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Typ wyjazdu</div>                            
-                            <table class="table">
-                                <tr><td>@Html.DisplayFor(model => model.SummerCamp)</td><td>@Html.DisplayNameFor(model => model.SummerCamp)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.WinterCamp)</td><td>@Html.DisplayNameFor(model => model.WinterCamp)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.Bivouac)</td><td>@Html.DisplayNameFor(model => model.Bivouac)</td></tr>                                  
-                            </table>                         
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Odpowiednie dla</div>
-                            <table class="table">
-                                <tr><td>@Html.DisplayFor(model => model.Scouts)</td><td>@Html.DisplayNameFor(model => model.Scouts)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.WolfCubs)</td><td>@Html.DisplayNameFor(model => model.WolfCubs)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.MaxPeopleCapacity)</td><td>@Html.DisplayNameFor(model => model.MaxPeopleCapacity)</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Dostępne opcje</div>
-                            <table class="table">
-                                <tr><td>@Html.DisplayFor(model => model.Buildings)</td><td>@Html.DisplayNameFor(model => model.Buildings)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.Toilet)</td><td>@Html.DisplayNameFor(model => model.Toilet)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.Shower)</td><td>@Html.DisplayNameFor(model => model.Shower)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.Kitchen)</td><td>@Html.DisplayNameFor(model => model.Kitchen)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.SleepingInside)</td><td>@Html.DisplayNameFor(model => model.SleepingInside)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.AccessibleByCar)</td><td>@Html.DisplayNameFor(model => model.AccessibleByCar)</td></tr>
-                                <tr><td>@Html.DisplayFor(model => model.DistanceFromBuildings)</td><td>@Html.DisplayNameFor(model => model.DistanceFromBuildings)</td></tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Informacje Administracyjne</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.Community)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.Community)</p>
-                            </div>                            
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.Sanel)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.Sanel)</p>
-                            </div>                            
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.PoviatFireBrigade)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.PoviatFireBrigade)</p>
-                            </div>                            
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.EvacuationPlace)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.EvacuationPlace)</p>
-                            </div>
-                            <table class="table">
-                                <tr><td>@Html.DisplayFor(model => model.EvacuationDistance) km</td><td>@Html.DisplayNameFor(model => model.EvacuationDistance)</td></tr>                                
-                            </table>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestHospital)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.NearestHospital)</p>
-                            </div>                            
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestFireDepartment)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.NearestFireDepartment)</p>
-                            </div>                            
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestPoliceStation)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.NearestPoliceStation)</p>
-                            </div>                            
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.Superintendence)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.Superintendence)</p>
-                            </div>                            
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestParish)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.NearestParish)</p>
-                            </div>                            
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">@Html.DisplayNameFor(model => model.NearestMarket)</div>
-                            <div class="panel-body">
-                                <p>@Html.DisplayFor(model => model.NearestMarket)</p>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="well well-lg"><div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-    </div></div>
-        
-        
+
+
+</div>
+

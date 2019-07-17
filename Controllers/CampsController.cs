@@ -245,5 +245,41 @@ namespace CampplaceTest1.Controllers
         {
             return _context.Camp.Any(e => e.Id == id);
         }
+
+        //[Authorize(Roles = "MasterUser,CanVerifyCamps")]
+        //public async Task<IActionResult> Verify(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var camp = await _context.Camp.FindAsync(id);
+        //    if (camp == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(camp);
+        //}
+
+        // POST: Camps/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "MasterUser,CanVerifyCamps")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Verify(int id)
+        {
+
+            
+                var camp = await _context.Camp.FindAsync(id);
+                camp.Verified = true;
+            _context.Update(camp);
+            await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            
+        }
+
+
     }
 }
