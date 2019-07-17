@@ -391,7 +391,7 @@
         {
             <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Usuń</a>
         }
-        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanVerifyCamps") || User.IsInRole("MasterUser")) && Model.Verified == false)
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanVerifyCamps") || User.IsInRole("MasterUser")) && (Model.Verified == 0 || Model.Verified == 2))
         {
     <div>
         <br />

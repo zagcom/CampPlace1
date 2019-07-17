@@ -52,13 +52,17 @@
         {
             <tr>
                 <td>
-                    @if (item.Verified == true)
+                    @if (item.Verified == 1)
                     {
                         <span class="label label-success">Zweryfikowany!</span>
                     }
-                    else
+                    else if (item.Verified == 0)
                     {
                         <span class="label label-danger">Niezweryfikowany!</span>
+                    }
+                    else
+                    {
+                        <span class="label label-warning">Uaktualniony!</span>
                     }
                     @if ((DateTime.Now - item.TimeCreated).Days < 7)
                     {
