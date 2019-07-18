@@ -93,6 +93,7 @@ namespace CampplaceTest1.Models
         public string OwnerId { get; set; }
         [Display(Name = "Zweryfikowane")]
         public int Verified { get; set; }
+        public List<Comment> Comments { get; set; }
     }
     public enum Voivodeship
     {
