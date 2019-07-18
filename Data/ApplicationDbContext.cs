@@ -14,5 +14,6 @@ namespace CampplaceTest1.Data
         {
         }
         public DbSet<CampplaceTest1.Models.Camp> Camp { get; set; }
+        public DbSet<CampplaceTest1.Models.Comment> Comment { get; set; }
     }
 }

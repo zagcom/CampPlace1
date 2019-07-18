@@ -42,11 +42,6 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account.Manage
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Username")]
-            public string UserName { get; set; }
-
-            [Required]
-            [DataType(DataType.Text)]
             [Display(Name = "First name")]
             public string FirstName { get; set; }
             [Required]
@@ -132,10 +127,7 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            if (Input.UserName != user.UserName)
-            {
-                user.UserName = Input.UserName;
-            }
+           
 
             if (Input.FirstName != user.FirstName)
             {
