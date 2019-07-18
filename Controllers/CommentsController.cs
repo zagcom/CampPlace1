@@ -53,7 +53,7 @@ namespace CampplaceTest1.Controllers
         // GET: Comments/Create
         public IActionResult Create(int id)
         {
-            //ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Name");
+            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Name");
             return View();
         }
 

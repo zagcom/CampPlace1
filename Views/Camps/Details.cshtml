@@ -433,36 +433,37 @@
             </div>
         </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="well well-lg">
-            @foreach (var item in Model.Comments)
-            {
-                <div class="panel panel-default">
-                    <div class="panel-heading"><div>@Html.DisplayFor(modelItem => item.UserName),  @Html.DisplayFor(modelItem => item.Added)</div>
-                    @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")))
+        <div class="row">
+            <div class="col-md-8">
+                <div class="well well-lg">
+                    @foreach (var item in Model.Comments)
                     {
-                        <div class="text-right">
-                            <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info">Edit</a>
-                            <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div>@Html.DisplayFor(modelItem => item.UserName),  @Html.DisplayFor(modelItem => item.Added)</div>
+                                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")))
+                                {
+                                    <div class="text-right">
+                                        <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info">Edit</a>
+                                        <a asp-controller="Comments" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                                    </div>
+                                }
+                            </div>
+                            <div class="panel-body">
+                                <p>@Html.DisplayFor(modelItem => item.Content)</p>
+                            </div>
                         </div>
-                    }
-                    </div>
-                    <div class="panel-body">
-                        <p>@Html.DisplayFor(modelItem => item.Content)</p>
-                    </div>
-                </div>
-                
-                   
-            }
-        </div>
-            
-        </div>
-    <div class="col-md-4">
-        <a asp-controller="Comments" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-sm btn-info">Dodaj nowy komentarz</a>
-    </div>
 
-    </div>
+
+                    }
+                </div>
+
+            </div>
+            <div class="col-md-4">
+                <a asp-controller="Comments" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-sm btn-info">Dodaj nowy komentarz</a>
+            </div>
+           
+        </div>
         <div class="well well-lg">
 
             <div>
