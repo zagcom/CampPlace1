@@ -14,6 +14,7 @@ namespace CampplaceTest1.Models
         [Display (Name ="Treść Komentarza")]
         public string Content { get; set; }
         public string UserName { get; set; }
+        public string UserId { get; set; }
         public DateTime Added { get; set; }
     }
 }

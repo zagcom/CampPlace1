@@ -1,46 +1,81 @@
 ﻿@model CampplaceTest1.Models.Comment
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+@if (SignInManager.IsSignedIn(User) && ((User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")) || (UserManager.GetUserId(User) == Model.UserId)))
+{
 
-<h4>Comment</h4>
+
+    <br />
+<h4>Edytuj Komentarz</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+
+    <div class="col-md-8">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+            @*<div class="form-group">
+                    <label asp-for="CampId" class="control-label"></label>
+                    <select asp-for="CampId" class ="form-control" asp-items="ViewBag.CampId"></select>
+                </div>*@
             <div class="form-group">
-                <label asp-for="CampId" class="control-label"></label>
-                <select asp-for="CampId" class="form-control" asp-items="ViewBag.CampId"></select>
-                <span asp-validation-for="CampId" class="text-danger"></span>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><label asp-for="Content" class="control-label"></label></h3>
+
+                    </div>
+                    <div class="panel-body">
+                        <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+                    </div>
+                    <div class="panel-footer">
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                        <div class="form-group">
+                            <input type="submit" value="Zapisz Komentarz" class="btn btn-success" /> <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-default">Anuluj</a>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label asp-for="Content" class="control-label"></label>
-                <input asp-for="Content" class="form-control" />
-                <span asp-validation-for="Content" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Added" class="control-label"></label>
-                <input asp-for="Added" class="form-control" />
-                <span asp-validation-for="Added" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+
+
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+}
+else
+{
+    <br />
+<div class="row">
+
+    <div class="col-md-8">
+        
+            <div class="form-group">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Brak uprawnień</h3>
+
+                    </div>
+                    <div class="panel-body">
+                        Niestety nie masz uprawnień aby edytować ten komentarz!
+                    </div>
+                    <div class="panel-footer panel-danger">
+                        
+                             <a class="btn btn-default" asp-controller="Camps" asp-action="Index">Wróć do listy obozów</a>
+                        
+
+                    </div>
+                </div>
+
+            </div>
+
+
+    </div>
 </div>
 
+}

@@ -83,7 +83,7 @@ namespace CampplaceTest1.Controllers
                 camp.OwnerName = userName;
                 camp.OwnerId = userId;
                 camp.ImagePath = @"/images/placeholder-image.jpg";
-                camp.Verified = 0;
+                camp.Verified = false;
                 _context.Add(camp);
                 await _context.SaveChangesAsync();
                 
@@ -157,7 +157,8 @@ namespace CampplaceTest1.Controllers
             var userName = user?.FirstName + " " + user?.LastName;
             camp.LastEdited = DateTime.Now;
             camp.EditorName = userName;
-            camp.Verified = 2;
+            camp.Verified = false;
+            camp.Edited = true;
 
             if (ModelState.IsValid)
             {
@@ -275,7 +276,8 @@ namespace CampplaceTest1.Controllers
 
             
                 var camp = await _context.Camp.FindAsync(id);
-                camp.Verified = 1;
+                camp.Verified = true;
+            camp.Edited = false;
             _context.Update(camp);
             await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

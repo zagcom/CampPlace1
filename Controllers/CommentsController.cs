@@ -66,6 +66,7 @@ namespace CampplaceTest1.Controllers
         {
             var user = await GetCurrentUserAsync();
             var camp = await _context.Camp.FindAsync(id);
+            comment.UserId = user.Id;
             comment.CampId = camp.Id;
             comment.UserName = user?.FirstName + " " + user?.LastName;
             comment.Added = DateTime.Now;

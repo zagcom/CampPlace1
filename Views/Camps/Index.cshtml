@@ -52,15 +52,15 @@
         {
             <tr>
                 <td>
-                    @if (item.Verified == 1)
+                    @if (item.Verified == true)
                     {
                         <span class="label label-success">Zweryfikowany!</span>
                     }
-                    else if (item.Verified == 0)
+                    else 
                     {
                         <span class="label label-danger">Niezweryfikowany!</span>
                     }
-                    else
+                    @if (item.Edited == true)
                     {
                         <span class="label label-warning">Uaktualniony!</span>
                     }

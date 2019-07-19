@@ -10,15 +10,15 @@
             <div class="well well-lg">
                 <div class="page-header">
                     <h1>@Html.DisplayFor(model => model.Name)</h1>
-                    @if (Model.Verified == 1)
+                    @if (Model.Verified == true)
                     {
                         <span class="label label-success">Zweryfikowany!</span>
                     }
-                    else if (Model.Verified == 0)
+                    else
                     {
                         <span class="label label-danger">Niezweryfikowany!</span>
                     }
-                    else
+                    @if (Model.Edited == true)
                     {
                         <span class="label label-warning">Uaktualniony!</span>
                     }
@@ -441,7 +441,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <div>@Html.DisplayFor(modelItem => item.UserName),  @Html.DisplayFor(modelItem => item.Added)</div>
-                                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")))
+                                @if (SignInManager.IsSignedIn(User) && ((User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")) || (UserManager.GetUserId(User) == item.UserId) ))
                                 {
                                     <div class="text-right">
                                         <a asp-controller="Comments" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info">Edit</a>
@@ -477,7 +477,7 @@
                 {
                     <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Usuń</a>
                 }
-                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanVerifyCamps") || User.IsInRole("MasterUser")) && (Model.Verified == 0 || Model.Verified == 2))
+                @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanVerifyCamps") || User.IsInRole("MasterUser")) && (Model.Verified == false))
                 {
                     <div>
                         <br />
