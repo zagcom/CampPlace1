@@ -9,8 +9,8 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead  class="text-center">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Camp)
@@ -31,7 +31,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Camp.Id)
+                <a asp-controller="Camps" asp-action="Details" asp-route="@item.CampId"> @Html.DisplayFor(modelItem => item.Camp.Name)</a>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Content)
