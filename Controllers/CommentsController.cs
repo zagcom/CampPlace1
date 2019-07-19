@@ -74,10 +74,13 @@ namespace CampplaceTest1.Controllers
             {
                 _context.Add(comment);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Details));
+                return RedirectToAction("Details", "Camps", new { id = camp.Id });
+                //return Redirect(Request.UrlReferrer.ToString());
             }
             ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id", comment.CampId);
             return View(comment);
+
         }
 
         // GET: Comments/Edit/5
