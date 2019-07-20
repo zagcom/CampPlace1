@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<CampplaceTest1.Models.Comment>
-
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
     ViewData["Title"] = "Index";
 }
@@ -10,7 +11,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 <table class="table table-hover">
-    <thead  class="text-center">
+    <thead class="text-center">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Camp)
@@ -28,10 +29,11 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
-                <a asp-controller="Camps" asp-action="Details" asp-route="@item.CampId"> @Html.DisplayFor(modelItem => item.Camp.Name)</a>
+                @Html.DisplayFor(modelItem => item.Camp.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Content)
@@ -42,12 +44,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Added)
             </td>
+           
+            
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-default">Czytaj</a>
+                @if (SignInManager.IsSignedIn(User) && ((User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")) || (UserManager.GetUserId(User) == item.UserId)))
+                {<a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edytuj</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Usuń</a>}
+
             </td>
+           
         </tr>
-}
+        }
     </tbody>
 </table>
