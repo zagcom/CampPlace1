@@ -42,27 +42,27 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account
         {
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "First Name")]
+            [Display(Name = "Imię")]
             public string FirstName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Last Name")]
+            [Display(Name = "Nazwisko")]
             public string LastName { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "City")]
+            [Display(Name = "Miejscowość")]
             public string City { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Unit")]
+            [Display(Name = "Hufiec")]
             public string Unit { get; set; }
 
             [Required]
             [DataType(DataType.Text)]
-            [Display(Name = "Function")]
+            [Display(Name = "Funkcja")]
             public string Function { get; set; }
 
             [Required]
@@ -73,12 +73,12 @@ namespace CampplaceTest1.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Hasło")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Potwierdź Hasło")]
+            [Compare("Password", ErrorMessage = "Wpisane hasła nie są identyczne.")]
             public string ConfirmPassword { get; set; }
         }
 
