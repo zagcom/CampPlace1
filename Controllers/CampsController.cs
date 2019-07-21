@@ -50,7 +50,7 @@ namespace CampplaceTest1.Controllers
                 return NotFound();
             }
 
-            var camp = await _context.Camp.Include(C=>C.Comments).FirstOrDefaultAsync(m => m.Id == id);
+            var camp = await _context.Camp.Include(C=>C.Comments).Include(r=>r.Reservations).FirstOrDefaultAsync(m => m.Id == id);
             if (camp == null)
             {
                 return NotFound();

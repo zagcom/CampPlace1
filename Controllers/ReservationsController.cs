@@ -48,7 +48,7 @@ namespace CampplaceTest1.Controllers
         // GET: Reservations/Create
         public IActionResult Create()
         {
-            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id");
+            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Name");
             return View();
         }
 
