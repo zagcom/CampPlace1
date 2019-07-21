@@ -7,17 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CampplaceTest1.Data;
 using CampplaceTest1.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CampplaceTest1.Controllers
 {
     public class ReservationsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ReservationsController(ApplicationDbContext context)
+        public ReservationsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
+        private Task<ApplicationUser> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
 
         // GET: Reservations
         public async Task<IActionResult> Index()
@@ -46,7 +50,7 @@ namespace CampplaceTest1.Controllers
         }
 
         // GET: Reservations/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
             ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Name");
             return View();
@@ -57,8 +61,16 @@ namespace CampplaceTest1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CampId,Start,End,Unit,UserName,Status")] Reservation reservation)
+        public async Task<IActionResult> Create([Bind("Start,End,Unit,Status")] Reservation reservation, int id)
         {
+
+            var user = await GetCurrentUserAsync();
+            var camp = await _context.Camp.FindAsync(id);
+            reservation.UserId = user.Id;
+            reservation.CampId = camp.Id;
+            reservation.UserName = user?.FirstName + " " + user?.LastName;
+            
+
             if (ModelState.IsValid)
             {
                 _context.Add(reservation);
