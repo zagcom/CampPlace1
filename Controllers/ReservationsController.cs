@@ -68,6 +68,7 @@ namespace CampplaceTest1.Controllers
             var camp = await _context.Camp.FindAsync(id);
             reservation.UserId = user.Id;
             reservation.CampId = camp.Id;
+            //reservation.CampId = camp.Id;
             reservation.UserName = user?.FirstName + " " + user?.LastName;
             
 
@@ -77,7 +78,7 @@ namespace CampplaceTest1.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id", reservation.CampId);
+            //ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id", reservation.CampId);
             return View(reservation);
         }
 

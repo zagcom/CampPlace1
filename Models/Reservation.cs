@@ -13,8 +13,12 @@ namespace CampplaceTest1.Models
         [Display(Name ="Miejsce Obozowe")]
         public int CampId { get; set; }
         [Display(Name ="Początek Obozu")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime Start { get; set; }
         [Display(Name = "Koniec Obozu")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
+        [DataType(DataType.Date)]
         public DateTime End { get; set; }
         [Display(Name = "Jednostka")]
         public string Unit { get; set; }

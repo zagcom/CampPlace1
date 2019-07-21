@@ -19,6 +19,7 @@ namespace CampplaceTest1.Models
         public string UserName { get; set; }
         public string UserId { get; set; }
         [Display(Name = "Data publikacji")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy, hh:mm}")]
         public DateTime Added { get; set; }
     }
 }

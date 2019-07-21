@@ -83,10 +83,12 @@ namespace CampplaceTest1.Models
         [Display(Name = "Telefon do osoby kontaktowej")]
         public string PhoneToCP { get; set; }
         [Display(Name = "Data ostatniej edycji")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy hh:mm}")]
         public DateTime? LastEdited { get; set; }
         [Display(Name = "Edytowane przez")]
         public string EditorName { get; set; }
         [Display(Name = "Data Utworzenia")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy hh:mm}")]
         public DateTime TimeCreated { get; set; }
         [Display(Name = "Utworzone przez")]
         public string OwnerName { get; set; }
