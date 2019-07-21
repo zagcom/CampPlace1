@@ -96,6 +96,7 @@ namespace CampplaceTest1.Models
         [Display(Name = "Edytowane")]
         public bool Edited { get; set; }
         public List<Comment> Comments { get; set; }
+        public List<Reservation> Reservations { get; set; }
     }
     public enum Voivodeship
     {
