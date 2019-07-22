@@ -72,7 +72,7 @@ namespace CampplaceTest1.Controllers
         [Authorize(Roles = "MasterUser,CanViewAndCreateCamps")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP,AccessibleByCar")] Camp camp, IFormFile file)
+        public async Task<IActionResult> Create([Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Game,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP,AccessibleByCar")] Camp camp, IFormFile file)
         {
             var user = await GetCurrentUserAsync();
             var userName = user?.FirstName + " " + user?.LastName;
@@ -147,7 +147,7 @@ namespace CampplaceTest1.Controllers
         [Authorize(Roles = "MasterUser,CanManageCamps")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP,OwnerName,TimeCreated,ImagePath,OwnerId,AccessibleByCar")] Camp camp, IFormFile file)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Voivodeship,Community,Name,Description,Coordinates,Address,SummerCamp,WinterCamp,Bivouac,Game,Scouts,WolfCubs,Buildings,Toilet,Shower,Kitchen,SleepingInside,MaxPeopleCapacity,DistanceFromBuildings,NearestHospital,NearestFireDepartment,NearestPoliceStation,NearestMarket,NearestParish,Sanel,Superintendance,PoviatFireBrigade,EvacuationPlace,EvacuationDistance,ContactPoint,EmailToCP,PhoneToCP,OwnerName,TimeCreated,ImagePath,OwnerId,AccessibleByCar")] Camp camp, IFormFile file)
         {
             if (id != camp.Id)
             {

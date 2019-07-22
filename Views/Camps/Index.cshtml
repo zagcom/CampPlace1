@@ -37,6 +37,9 @@
                 @Html.DisplayNameFor(model => model.Bivouac)
             </th>
             <th class="text-center">
+                @Html.DisplayNameFor(model => model.Game)
+            </th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Scouts)
             </th>
             <th class="text-center">
@@ -51,88 +54,98 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @if (item.Verified == true)
-                    {
-                        <span class="label label-success">Zweryfikowany!</span>
-                    }
-                    else 
-                    {
-                        <span class="label label-danger">Niezweryfikowany!</span>
-                    }
-                    @if (item.Edited == true)
-                    {
-                        <span class="label label-warning">Uaktualniony!</span>
-                    }
-                    @if ((DateTime.Now - item.TimeCreated).Days < 7)
-                    {
-                        <span class="label label-info">Nowy!</span>
-                    }
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
-                </td>
+        <tr>
+            <td>
+                @if (item.Verified == true)
+                {
+                    <span class="label label-success">Zweryfikowany!</span>
+                }
+                else
+                {
+                    <span class="label label-danger">Niezweryfikowany!</span>
+                }
+                @if (item.Edited == true)
+                {
+                    <span class="label label-warning">Uaktualniony!</span>
+                }
+                @if ((DateTime.Now - item.TimeCreated).Days < 7)
+                {
+                    <span class="label label-info">Nowy!</span>
+                }
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Voivodeship)
-                </td>
-                <td>
-                    @if (item.SummerCamp == true)
-                    {
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    }
-                    else
-                    {
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    }
-                </td>
-                <td>
-                    @if (item.WinterCamp == true)
-                    {
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    }
-                    else
-                    {
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    }
-                </td>
-                <td>
-                    @if (item.Bivouac == true)
-                    {
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    }
-                    else
-                    {
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    }
-                </td>
-                <td>
-                    @if (item.Scouts == true)
-                    {
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    }
-                    else
-                    {
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    }
-                </td>
-                <td>
-                    @if (item.WolfCubs == true)
-                    {
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    }
-                    else
-                    {
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    }
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Voivodeship)
+            </td>
+            <td>
+                @if (item.SummerCamp == true)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+            </td>
+            <td>
+                @if (item.WinterCamp == true)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+            </td>
+            <td>
+                @if (item.Bivouac == true)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+            </td>
+            <td>
+                @if (item.Game == true)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+            </td>
+            <td>
+                @if (item.Scouts == true)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+            </td>
+            <td>
+                @if (item.WolfCubs == true)
+                {
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                }
+                else
+                {
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                }
+            </td>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaxPeopleCapacity)
-                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPeopleCapacity)
+            </td>
 
-            </tr>
+        </tr>
         }
     </tbody>
 </table>

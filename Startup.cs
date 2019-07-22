@@ -86,7 +86,7 @@ namespace CampplaceTest1
             //initializing custom roles   
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-            string[] roleNames = { "MasterUser", "Member", "CanViewAndCreateCamps", "CanEditCamps", "CanManageComments", "CanDeleteCamps", "CanVerifyCamps" };
+            string[] roleNames = { "MasterUser", "Member", "CanViewAndCreateCamps", "CanEditCamps", "CanManageComments", "CanDeleteCamps", "CanVerifyCamps", "CanManageReservations" };
             IdentityResult roleResult;
 
             foreach (var roleName in roleNames)

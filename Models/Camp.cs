@@ -27,6 +27,8 @@ namespace CampplaceTest1.Models
         public bool WinterCamp { get; set; }
         [Display(Name = "Biwak")]
         public bool Bivouac { get; set; }
+        [Display(Name = "Gra")]
+        public bool Game { get; set; }
         [Display(Name = "Gałąź Zielona")]
         public bool Scouts { get; set; }
         [Display(Name = "Gałąź Żółta")]
