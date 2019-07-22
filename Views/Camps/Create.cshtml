@@ -17,45 +17,46 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label asp-for="Name" class="control-label"></label>
-                        <input asp-for="Name" class="form-control" />
+                        <input asp-for="Name" class="form-control" data-toggle="tooltip" data-placement="top" title="Tutaj wprowadź nazwę miejsca obozowego" />
+                       
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Voivodeship" class="control-label"></label>
-                        <select asp-for="Voivodeship" asp-items="Html.GetEnumSelectList<Voivodeship>()" class="form-control"></select>
+                        <select asp-for="Voivodeship" asp-items="Html.GetEnumSelectList<Voivodeship>()" class="form-control" data-toggle="tooltip" data-placement="top" title="Wybierz województwo w którym leży wprowadzane miejsce obozowe"></select>
                         <span asp-validation-for="Voivodeship" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Address" class="control-label"></label>
-                        <textarea asp-for="Address" class="form-control" rows="4"></textarea>
+                        <textarea asp-for="Address" class="form-control" rows="4" data-toggle="tooltip" data-placement="top" title="Wpisz adres miejsca obozowego, jeżeli taki jest dostępny"></textarea>
                         <span asp-validation-for="Address" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="Coordinates" class="control-label"></label>
-                        <input asp-for="Coordinates" class="form-control" />
+                        <input asp-for="Coordinates" class="form-control" data-toggle="tooltip" data-placement="top" title="Wklej współrzędne miejsca obozowego w formacie: 52.214040, 20.969462. Możesz je skopiować z map Google" placeholder="52.214040, 20.969462"/>
                         <span asp-validation-for="Coordinates" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="MaxPeopleCapacity" class="control-label"></label>
-                        <input asp-for="MaxPeopleCapacity" class="form-control" />
+                        <input asp-for="MaxPeopleCapacity" class="form-control" data-toggle="tooltip" data-placement="top" title="Ilu osób maksymalnie pomieści obóz w tym miejscu?"/>
                         <span asp-validation-for="MaxPeopleCapacity" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ContactPoint" class="control-label"></label>
-                        <input asp-for="ContactPoint" class="form-control" />
+                        <input asp-for="ContactPoint" class="form-control" data-toggle="tooltip" data-placement="top" title="Imię i nazwisko osoby odpowiedzialnej za to miejsce."/>
                         <span asp-validation-for="ContactPoint" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="EmailToCP" class="control-label"></label>
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon1">@@</span>
-                            <input asp-for="EmailToCP" class="form-control" />                    
+                            <input asp-for="EmailToCP" class="form-control" data-toggle="tooltip" data-placement="top" title="Adres e-mail osoby odpowiedzialnej za to miejsce."/>                    
                         </div>
                         <span asp-validation-for="EmailToCP" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="PhoneToCP" class="control-label"></label>
-                        <input asp-for="PhoneToCP" class="form-control" />
+                        <input asp-for="PhoneToCP" class="form-control" data-toggle="tooltip" data-placement="top" title="Numer telefonu osoby odpowiedzialnej za to miejsce."/>
                         <span asp-validation-for="PhoneToCP" class="text-danger"></span>
                     </div>                                        
                 </div>
@@ -71,21 +72,21 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Miejsce nadaje się na obóz letni.">
                                             <input asp-for="SummerCamp" /> @Html.DisplayNameFor(model => model.SummerCamp)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Miejsce nadaje się na zimowisko.">
                                             <input asp-for="WinterCamp" /> @Html.DisplayNameFor(model => model.WinterCamp)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Miejsce nadaje się na biwak.">
                                             <input asp-for="Bivouac" /> @Html.DisplayNameFor(model => model.Bivouac)
                                         </label>
                                     </div>
@@ -97,14 +98,14 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Miejsce odpowiednie dla zielonej gałęzi.">
                                             <input asp-for="Scouts" /> @Html.DisplayNameFor(model => model.Scouts)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Miejsce odpowiednie dla żółtej gałęzi.">
                                             <input asp-for="WolfCubs" /> @Html.DisplayNameFor(model => model.WolfCubs)
                                         </label>
                                     </div>
@@ -116,21 +117,21 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="W okolicy znajduje się jezioro.">
                                             <input asp-for="Lake" /> @Html.DisplayNameFor(model => model.Lake)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="W okolicy znajduje się rzeka.">
                                             <input asp-for="River" /> @Html.DisplayNameFor(model => model.River)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="W okolicy znajdują się góry.">
                                             <input asp-for="Mountains" /> @Html.DisplayNameFor(model => model.Mountains)
                                         </label>
                                     </div>
@@ -142,42 +143,42 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Do miejsca możliwy jest dojazd samochodem (Karetką / Wozem strażackim).">
                                             <input asp-for="AccessibleByCar" /> @Html.DisplayNameFor(model => model.AccessibleByCar)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Na terenie miejsca znajdują się dostępne zabudowania.">
                                             <input asp-for="Buildings" /> @Html.DisplayNameFor(model => model.Buildings)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Na terenie miejsca znajduje się toaleta.">
                                             <input asp-for="Toilet" /> @Html.DisplayNameFor(model => model.Toilet)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Na terenie miejsca znajduje się prysznic.">
                                             <input asp-for="Shower" /> @Html.DisplayNameFor(model => model.Shower)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Na terenie miejsca znajduje się kuchnia.">
                                             <input asp-for="Kitchen" /> @Html.DisplayNameFor(model => model.Kitchen)
                                         </label>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">
-                                        <label>
+                                        <label data-toggle="tooltip" data-placement="top" title="Czy w zabudowaniach można nocować?">
                                             <input asp-for="SleepingInside" /> @Html.DisplayNameFor(model => model.SleepingInside)
                                         </label>
                                     </div>
@@ -190,7 +191,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Zdjęcie</div>
                             <div class="panel-body">
-                                <div class="form-group">
+                                <div class="form-group" data-toggle="tooltip" data-placement="top" title="Poglądowe zdjęcie z miejsca obozowego">
                                     <input type="file" name="file" />
                                     <span asp-validation-for="ImagePath" class="text-danger"></span>
                                 </div>
@@ -199,7 +200,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Opis</div>
                             <div class="panel-body">
-                                <div class="form-group">
+                                <div class="form-group" data-toggle="tooltip" data-placement="top" title="Opis Miejsca">
                                     <textarea asp-for="Description" class="form-control" rows="12"></textarea>
                                     <span asp-validation-for="Description" class="text-danger"></span>
                                 </div>
@@ -208,7 +209,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Odległość od najbliższych gospodarstw</div>
                             <div class="panel-body">
-                                <div class="form-group">
+                                <div class="form-group" data-toggle="tooltip" data-placement="top" title="Odległość od miejsca obozowego najbliższych, zamieszkałych gospodarstw.">
                                     <div class="input-group">
                                         <input asp-for="DistanceFromBuildings" class="form-control" />
                                         <span class="input-group-addon" id="basic-addon2">km</span>
@@ -221,7 +222,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Miejsce Ewakuacji</div>
                             <div class="panel-body">
-                                <div class="form-group">
+                                <div class="form-group" data-toggle="tooltip" data-placement="top" title="Miejsce w którym zapewnione będzie bezpieczeństwo uczestników w razie trudnych sytuacji.">
                                     <textarea asp-for="EvacuationPlace" class="form-control" rows="5"></textarea>
                                     <span asp-validation-for="EvacuationPlace" class="text-danger"></span>
                                 </div>
@@ -231,7 +232,7 @@
                             <div class="panel-heading">Odległość od miejsca ewakuacji</div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <div class="input-group">
+                                    <div class="input-group" data-toggle="tooltip" data-placement="top" title="Odległość miejsca obozowego od bezpiecznego miejsca">
                                         <input asp-for="EvacuationDistance" class="form-control" />
                                         <span class="input-group-addon" id="basic-addon2">km</span>
                                     </div>
@@ -268,7 +269,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">Urząd Gminy</div>
                                 <div class="panel-body">
-                                    <div class="form-group">
+                                    <div class="form-group" data-toggle="tooltip" data-placement="top" title="Urząd Gminy na terenie którego znajduje się miejsce obozowe.">
                                         <textarea asp-for="Community" class="form-control" rows="5"></textarea>
                                         <span asp-validation-for="Community" class="text-danger"></span>
                                     </div>
@@ -277,7 +278,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">Sanepid</div>
                                 <div class="panel-body">
-                                    <div class="form-group">
+                                    <div class="form-group" data-toggle="tooltip" data-placement="top" title="Sanepid do którego warto się zgłosić przed obozem.">
                                         <textarea asp-for="Sanel" class="form-control" rows="5"></textarea>
                                         <span asp-validation-for="Sanel" class="text-danger"></span>
                                     </div>
@@ -286,7 +287,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">Powiatowa Straż Pożarna</div>
                                 <div class="panel-body">
-                                    <div class="form-group">
+                                    <div class="form-group" data-toggle="tooltip" data-placement="top" title="PSP od której dostaniemy zaświadczenie o możliwości organizacji obozu w zgłaszanym miejscu.">
                                         <textarea asp-for="PoviatFireBrigade" class="form-control" rows="5"></textarea>
                                         <span asp-validation-for="PoviatFireBrigade" class="text-danger"></span>
                                     </div>

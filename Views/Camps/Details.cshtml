@@ -443,6 +443,7 @@
                 <br /><br />
             </div>
             <div class="col-md-8">
+                @if (Model.Comments.Any()) {
                 <div class="well well-lg">
                     @foreach (var item in Model.Comments.OrderByDescending(a => a.Added))
                     {
@@ -466,6 +467,7 @@
                     }
                     <a asp-controller="Comments" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-sm btn-info">Dodaj nowy komentarz</a>
                 </div>
+                }
 
 
             </div>
@@ -473,45 +475,52 @@
 
 
             <div class="col-md-4">
-
-                @foreach (var item in Model.Reservations.OrderBy(d => d.Start))
+                @if (Model.Reservations.Any())
                 {
-                    @if (item.End > DateTime.Now)
+                    @foreach (var item in Model.Reservations.OrderBy(d => d.Start))
                     {
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Rezerwacja
-                                @if (SignInManager.IsSignedIn(User) && ((User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")) || (UserManager.GetUserId(User) == item.UserId)))
-                                {
-                                    <div class="text-right">
-                                        <a asp-controller="Reservations" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info">Edit</a>
-                                        <a asp-controller="Reservations" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
-                                    </div>
-                                }
+                        
+                        @if (item.End > DateTime.Now)
+                        {
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Rezerwacja
+                                    @if (SignInManager.IsSignedIn(User) && ((User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")) || (UserManager.GetUserId(User) == item.UserId)))
+                                    {
+                                        <div class="text-right">
+                                            <a asp-controller="Reservations" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-info">Edit</a>
+                                            <a asp-controller="Reservations" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                                        </div>
+                                    }
+                                </div>
+                                <table class="table">
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(modelItem => item.Unit)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Unit)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(modelItem => item.Start)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Start)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(modelItem => item.End)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.End)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(modelItem => item.UserName)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>@Html.DisplayNameFor(modelItem => item.Status)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                                    </tr>
+                                </table>
                             </div>
-                            <table class="table">
-                                <tr>
-                                    <td>@Html.DisplayNameFor(modelItem => item.Unit)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Unit)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(modelItem => item.Start)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Start)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(modelItem => item.End)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.End)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(modelItem => item.UserName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
-                                </tr>
-                                <tr>
-                                    <td>@Html.DisplayNameFor(modelItem => item.Status)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
-                                </tr>
-                            </table>
-                        </div>
+                        }
+                        
+                            <a asp-controller="Reservations" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-sm btn-info">Dodaj nową rezerwację</a>
+                            <br /><br />
+                        
                     }
 
                 }

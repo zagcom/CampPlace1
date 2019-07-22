@@ -4,15 +4,16 @@
 @{
     ViewData["Title"] = "Index";
 }
-<div class="well well-lg">
-    <h2>Lista miejsc obozowych</h2>
+<br/>
+    <div class="jumbotron">
+        <h1>Lista miejsc obozowych</h1>
+        @if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanViewAndCreateCamps") || User.IsInRole("MasterUser")))
+        {
+            <a class="btn btn-default" asp-action="Create">Dodaj nowe miejsce obozowe</a>
+        }
+    </div>
 
 
-</div>
-@if (SignInManager.IsSignedIn(User) && (User.IsInRole("CanViewAndCreateCamps") || User.IsInRole("MasterUser")))
-{
-    <a class="btn btn-default" asp-action="Create">Dodaj nowe miejsce obozowe</a>
-}
 <table class="table table-hover text-center">
     <thead>
         <tr>

@@ -131,7 +131,8 @@ namespace CampplaceTest1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Camps", new { id = comment.CampId });
             }
             ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Name", comment.CampId);
             return View(comment);

@@ -76,7 +76,8 @@ namespace CampplaceTest1.Controllers
             {
                 _context.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Camps", new { id = camp.Id });
             }
             //ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id", reservation.CampId);
             return View(reservation);
@@ -129,7 +130,8 @@ namespace CampplaceTest1.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details", "Camps", new { id = reservation.CampId });
             }
             ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id", reservation.CampId);
             return View(reservation);
