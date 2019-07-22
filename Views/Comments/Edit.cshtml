@@ -9,7 +9,7 @@
 
 @if (SignInManager.IsSignedIn(User) && ((User.IsInRole("CanManageComments") || User.IsInRole("MasterUser")) || (UserManager.GetUserId(User) == Model.UserId)))
 {
-
+    
 
     <br />
     <h4>Edytuj Komentarz</h4>
@@ -18,11 +18,19 @@
 
         <div class="col-md-8">
             <form asp-action="Edit">
+
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                @Html.HiddenFor(model => model.CampId)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.UserName)
+                @Html.HiddenFor(model => model.UserId)
+                @Html.HiddenFor(model => model.Added)
+                
                 @*<div class="form-group">
-                        <label asp-for="CampId" class="control-label"></label>
-                        <select asp-for="CampId" class ="form-control" asp-items="ViewBag.CampId"></select>
-                    </div>*@
+                    <label asp-for="CampId" class="control-label"></label>
+                    <select asp-for="CampId" class="form-control" asp-items="ViewBag.CampId"></select>
+                </div>*@
                 <div class="form-group">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -35,7 +43,7 @@
                         <div class="panel-footer">
                             <span asp-validation-for="Content" class="text-danger"></span>
                             <div class="form-group">
-                                
+
                                 <input type="submit" value="Zapisz Komentarz" class="btn btn-success" /> <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-default">Anuluj</a>
                             </div>
 

@@ -97,7 +97,7 @@ namespace CampplaceTest1.Controllers
             {
                 return NotFound();
             }
-            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id", comment.CampId);
+            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Name", comment.CampId);
             return View(comment);
         }
 
@@ -133,7 +133,7 @@ namespace CampplaceTest1.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Id", comment.CampId);
+            ViewData["CampId"] = new SelectList(_context.Camp, "Id", "Name", comment.CampId);
             return View(comment);
         }
 

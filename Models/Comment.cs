@@ -10,7 +10,7 @@ namespace CampplaceTest1.Models
     {
         public int Id { get; set; }
         [Display(Name = "Obóz")]
-        public int CampId { get; set; }
+        public int? CampId { get; set; }
         [Display(Name = "Obóz")]
         public Camp Camp { get; set; }
         [Display (Name ="Treść Komentarza")]

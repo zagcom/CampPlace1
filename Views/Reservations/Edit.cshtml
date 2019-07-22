@@ -19,6 +19,11 @@
         <div class="col-md-8">
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @Html.HiddenFor(model => model.CampId)
+                @Html.HiddenFor(model => model.Id)
+                @Html.HiddenFor(model => model.UserName)
+                @Html.HiddenFor(model => model.UserId)
+               
                 <div class="form-group">
                     <label asp-for="Start" class="control-label"></label>
                     <input asp-for="Start" class="form-control" />
@@ -40,7 +45,7 @@
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    
+
                     <input type="submit" value="Zapisz edycję" class="btn btn-success" /> <a href="javascript:void(0);" onclick="history.go(-1);" class="btn btn-default">Anuluj</a>
                 </div>
             </form>

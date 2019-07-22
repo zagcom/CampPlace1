@@ -11,7 +11,7 @@ namespace CampplaceTest1.Models
         public int Id { get; set; }
         public Camp Camp { get; set; }
         [Display(Name ="Miejsce Obozowe")]
-        public int CampId { get; set; }
+        public int? CampId { get; set; }
         [Display(Name ="Początek Obozu")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd.MM.yyyy}")]
         [DataType(DataType.Date)]
